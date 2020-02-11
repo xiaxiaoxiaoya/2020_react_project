@@ -14,10 +14,11 @@ class Login extends Component{
           }
         });
       };
+    //重写父类render
     render(){
         //获取this.props.form中的getFieldDecorator方法，但getFieldDecorator方法是如何获取到的?看最下边
         console.log(this)
-        const { getFieldDecorator} = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         return (
             <div id='login'>
                 <header>
@@ -54,14 +55,14 @@ class Login extends Component{
                             <Input
                             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             type="password"
-                            placeholder="Password"
+                            placeholder="密码"
                             />,
                         )}
                         </Item>
                         <Item>
                        
                         <Button type="primary" htmlType="submit" className="login-form-button">
-                            Log in
+                            登录
                         </Button>
                        
                         </Item>
@@ -75,3 +76,4 @@ class Login extends Component{
 //Form.create()返回的方法能够加工组件，生成的新组件多了一个特别重要的属性：form
 //此处不再对外暴露Login,暴露由Form.create()方法返回的函数生成的那个新组件
 export default Form.create()(Login)
+//首先拿到我们的Login组件,传了一个没有form属性的组件，然后经过加工，返回了一个新的具有form属性的Login的组件并对外暴露
