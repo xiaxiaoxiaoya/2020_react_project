@@ -43,6 +43,7 @@ axios.interceptors.response.use(
         //通过antd 在响应拦截器中统一处理错误 
         message.error('请求失败，请联系管理员');
     
+
       //如果故意将请求地址写错，那么axios就会返回一个undefined,一个非Promies实例，会走成功的回调，想让他走失败的回调，
       //要么返回一个失败的Promise实例，要么就返回一个pendding状态的Promise实例中断Promise链。
       return new Promise(()=>{})

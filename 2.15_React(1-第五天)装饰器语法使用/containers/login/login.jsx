@@ -6,9 +6,7 @@ import logo from './img/logo.png';
 import {reqLogin} from '../../api/index';
 //引入connect用于UI组件和容器组件的连接
 import {connect} from 'react-redux';
-// import {Redirect} from 'react-router-dom';
-//引入高阶组件
-import check from '../check/check'
+import {Redirect} from 'react-router-dom';
 //引入创建好的login的action
 import {createSaveUserInfoAction} from '../../redux/actions/login';
 //通过解构赋值，直接获取到Item上的Item,便于下边使用
@@ -19,7 +17,6 @@ const { Item } = Form;
     {saveUserInfo:createSaveUserInfoAction}//用于映射操作状态的方法
 )
 @Form.create()
-@check
 class Login extends Component {
     //自定义校验密码:当密码输入后，都会调用函数去验证是否合法
     pwdValidator = (rule, value, callback) => {
@@ -71,8 +68,8 @@ class Login extends Component {
         // console.log(this)
         const { getFieldDecorator } = this.props.form;
         //在此处判断，如果已经登录过，则直接跳转到admin页面。
-        // const {isLogin} = this.props.userInfo;
-        // if(isLogin) return <Redirect to='/admin' />
+        const {isLogin} = this.props.userInfo;
+        if(isLogin) return <Redirect to='/admin' />
         return (
             <div id='login'>
                 <header>
